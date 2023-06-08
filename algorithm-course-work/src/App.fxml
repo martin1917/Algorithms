@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.LineChart?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.Spinner?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+
+<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="800.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AppController">
+  <tabs>
+    <Tab text="Сравнение">
+      <content>
+        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+               <children>
+                  <VBox alignment="CENTER_LEFT" layoutX="85.0" layoutY="48.0" prefHeight="200.0" prefWidth="262.0" spacing="10.0">
+                     <children>
+                        <Label text="Вид массива" textAlignment="CENTER">
+                           <font>
+                              <Font name="Calibri Bold" size="24.0" />
+                           </font>
+                        </Label>
+                        <RadioButton fx:id="rbSorted1" mnemonicParsing="false" prefWidth="262.0" text="1">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                           <toggleGroup>
+                              <ToggleGroup fx:id="mainGroup1" />
+                           </toggleGroup>
+                        </RadioButton>
+                        <RadioButton fx:id="rbUnsorted1" mnemonicParsing="false" prefHeight="25.0" prefWidth="262.0" text="2" toggleGroup="$mainGroup1">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </RadioButton>
+                        <RadioButton fx:id="rbSortedDesc1" mnemonicParsing="false" prefWidth="262.0" text="3" textAlignment="JUSTIFY" toggleGroup="$mainGroup1" wrapText="true">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </RadioButton>
+                        <RadioButton fx:id="rbSomeSorted1" mnemonicParsing="false" prefWidth="262.0" text="4" toggleGroup="$mainGroup1">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </RadioButton>
+                     </children>
+                  </VBox>
+                  <VBox alignment="CENTER" layoutX="501.0" layoutY="48.0" prefHeight="200.0" prefWidth="185.0" spacing="30.0">
+                     <children>
+                        <VBox prefHeight="42.0" prefWidth="134.0">
+                           <children>
+                              <Label text="Размер массива" />
+                              <Spinner fx:id="spinnerSizeArr" prefHeight="25.0" prefWidth="210.0" />
+                           </children>
+                        </VBox>
+                        <VBox fx:id="procentVBox1" disable="true" prefHeight="43.0" prefWidth="100.0">
+                           <children>
+                              <Label text="Процент упорядоченности" />
+                              <Spinner fx:id="spinnerProcent1" prefHeight="25.0" prefWidth="244.0" />
+                           </children>
+                        </VBox>
+                        <Button fx:id="btnSort1" mnemonicParsing="false" onAction="#toCompareTime" prefHeight="33.0" prefWidth="243.0" text="Сортировать">
+                           <font>
+                              <Font name="Calibri" size="17.0" />
+                           </font>
+                        </Button>
+                     </children>
+                  </VBox>
+                  <VBox alignment="CENTER_LEFT" layoutX="176.0" layoutY="350.0" prefHeight="119.0" prefWidth="449.0" spacing="10.0">
+                     <children>
+                        <Label text="Сортировка прямым включением с линейным поиском" wrapText="true">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="tfLinear" editable="false" prefHeight="47.0" prefWidth="449.0" />
+                     </children>
+                  </VBox>
+                  <VBox alignment="CENTER_LEFT" layoutX="176.0" layoutY="469.0" prefHeight="119.0" prefWidth="449.0" spacing="10.0">
+                     <children>
+                        <Label text="Сортировка прямым включением с бинарным поиском" wrapText="true">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="tfBinary" editable="false" prefHeight="47.0" prefWidth="269.0" />
+                     </children>
+                  </VBox>
+                  <VBox alignment="CENTER_LEFT" layoutX="176.0" layoutY="588.0" prefHeight="119.0" prefWidth="449.0" spacing="10.0">
+                     <children>
+                        <Label text="Сортировка прямым включением с линейным поиском с мин. элементом" wrapText="true">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="tfLinearMin" editable="false" prefHeight="47.0" prefWidth="449.0" />
+                     </children>
+                  </VBox>
+                  <Label layoutX="41.0" layoutY="314.0" text="Результаты сортировки" textFill="#8a45f8">
+                     <font>
+                        <Font name="Arial Bold Italic" size="25.0" />
+                     </font>
+                  </Label>
+                  <Line endX="353.0" layoutX="394.0" layoutY="299.0" startX="-341.0" />
+                  <Label layoutX="41.0" layoutY="8.0" text="Предсортировочные условия" textFill="#8a45f8">
+                     <font>
+                        <Font name="Arial Bold Italic" size="25.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="label1" layoutX="73.0" layoutY="259.0" text="Вы не выбрали вид массива" textFill="RED" visible="false">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Label>
+               </children></AnchorPane>
+      </content>
+    </Tab>
+    <Tab text="График">
+      <content>
+        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+               <children>
+                  <LineChart fx:id="chart" layoutX="12.0" layoutY="14.0" prefHeight="475.0" prefWidth="777.0" title="Сравнение времени сортировки">
+                    <xAxis>
+                      <CategoryAxis label="размер массива" side="BOTTOM" />
+                    </xAxis>
+                    <yAxis>
+                      <NumberAxis label="время (мс)" side="LEFT" />
+                    </yAxis>
+                  </LineChart>
+                  <VBox alignment="CENTER_LEFT" layoutX="14.0" layoutY="511.0" prefHeight="200.0" prefWidth="262.0" spacing="10.0">
+                     <children>
+                        <Label text="Вид массива" textAlignment="CENTER">
+                           <font>
+                              <Font name="Calibri Bold" size="24.0" />
+                           </font>
+                        </Label>
+                        <RadioButton fx:id="rbSorted2" mnemonicParsing="false" prefWidth="262.0" text="1">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                           <toggleGroup>
+                              <ToggleGroup fx:id="mainGroup2" />
+                           </toggleGroup>
+                        </RadioButton>
+                        <RadioButton fx:id="rbUnsorted2" mnemonicParsing="false" prefHeight="25.0" prefWidth="262.0" text="2" toggleGroup="$mainGroup2">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </RadioButton>
+                        <RadioButton fx:id="rbSortedDesc2" mnemonicParsing="false" prefWidth="262.0" text="3" textAlignment="JUSTIFY" toggleGroup="$mainGroup2" wrapText="true">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </RadioButton>
+                        <RadioButton fx:id="rbSomeSorted2" mnemonicParsing="false" prefWidth="262.0" text="4" toggleGroup="$mainGroup2">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </RadioButton>
+                     </children>
+                  </VBox>
+                  <VBox alignment="CENTER" layoutX="542.0" layoutY="507.0" prefHeight="200.0" prefWidth="185.0" spacing="30.0">
+                     <children>
+                        <VBox fx:id="procentVBox2" disable="true" prefHeight="43.0" prefWidth="100.0">
+                           <children>
+                              <Label text="Процент упорядоченности" />
+                              <Spinner fx:id="spinnerProcent2" prefHeight="25.0" prefWidth="244.0" />
+                           </children>
+                        </VBox>
+                        <Button fx:id="btnSort2" mnemonicParsing="false" onAction="#toDrawChart" prefHeight="33.0" prefWidth="243.0" text="Построить">
+                           <font>
+                              <Font name="Calibri" size="17.0" />
+                           </font>
+                        </Button>
+                     </children>
+                  </VBox>
+                  <Line endX="373.0" fill="BLACK" layoutX="417.0" layoutY="489.0" startX="-405.0" />
+                  <Label fx:id="label2" layoutX="14.0" layoutY="499.0" text="Вы не выбрали вид массива" textFill="RED" visible="false">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Label>
+               </children></AnchorPane>
+      </content>
+    </Tab>
+      <Tab text="Таблица (для графика)">
+        <content>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+               <children>
+                  <TableView fx:id="table" layoutX="14.0" layoutY="78.0" prefHeight="399.0" prefWidth="773.0">
+                    <columns>
+                        <TableColumn fx:id="colSizeArr" prefWidth="75.0" text="Размер массива" />
+                        <TableColumn prefWidth="75.0" text="Сортировка прямым включением">
+                           <columns>
+                            <TableColumn fx:id="colLinear" prefWidth="50.0" text="Линейный поиск" />
+                              <TableColumn fx:id="colBinary" prefWidth="221.0" text="Бинарный поиск" />
+                              <TableColumn fx:id="colLinearMin" prefWidth="75.0" text="Поиск с мин. эл-том" />
+                           </columns>
+                        </TableColumn>
+                    </columns>
+                     <columnResizePolicy>
+                        <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                     </columnResizePolicy>
+                  </TableView>
+                  <Label fx:id="nameArray" layoutX="14.0" layoutY="14.0" text="label">
+                     <font>
+                        <Font size="25.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+        </content>
+      </Tab>
+  </tabs>
+</TabPane>
